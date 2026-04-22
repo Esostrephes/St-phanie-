@@ -1,1 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For STEPHANIE 💛</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e6c0;
+    --rose: #d4756b;
+    --cream: #faf6ef;
+    --deep: #1a1208;
+    --warm: #3d2b1f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Her photo fills the background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('her-photo.jpg'); /* ← replace with her actual photo filename */
+    background-size: cover;
+    background-position: center top;
+    filter: brightness(0.38) saturate(0.7);
+    transform: scale(1.04);
+    animation: slowzoom 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowzoom {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.12); }
+  }
+
+  /* warm vignette overlay */
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(10,6,2,0.85) 100%);
+  }
+
+  /* gold dust particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold-light);
+    opacity: 0;
+    animation: drift var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+  @keyframes drift {
+    0%   { opacity: 0; transform: translateY(0) translateX(0) scale(1); }
+    30%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(-120px) translateX(var(--tx)) scale(0.3); }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 0 1.5rem;
+    animation: fadeup 1.4s ease both;
+  }
+  @keyframes fadeup {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+    animation: fadeup 1.4s 0.3s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    animation: fadeup 1.4s 0.5s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,230,192,0.75);
+    margin-top: 1.2rem;
+    animation: fadeup 1.4s 0.8s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    animation: fadeup 2s 1.6s ease both;
+  }
+  .scroll-hint span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: linepulse 2s ease infinite;
+  }
+  @keyframes linepulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.15); }
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section {
+    position: relative;
+    padding: 6rem 1.5rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 2.5rem auto;
+    opacity: 0.45;
+  }
+
+  /* ── YEAR COUNTER ── */
+  .counter-section {
+    text-align: center;
+    padding: 5rem 1.5rem;
+  }
+
+  .counter-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.35);
+    position: relative;
+    margin: 0 auto 2.5rem;
+    animation: rotatering 30s linear infinite;
+  }
+  @keyframes rotatering {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .counter-ring::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.18);
+  }
+  .counter-ring-inner {
+    animation: rotatering 30s linear infinite reverse;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+  }
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .counter-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.3rem;
+  }
+
+  .counter-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .counter-section p {
+    font-size: 1.18rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,230,192,0.65);
+    line-height: 1.75;
+  }
+
+  /* ── LETTER ── */
+  .letter {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .letter::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 9rem;
+    color: var(--gold);
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .letter p {
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    line-height: 2;
+    color: rgba(245,230,192,0.88);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .letter p + p { margin-top: 1.4rem; }
+
+  .letter-sign {
+    margin-top: 2.5rem;
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  /* ── REASONS LIST ── */
+  .reasons-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .reason-item {
+    display: flex;
+    gap: 1.4rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    opacity: 0;
+    transform: translateX(-18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reason-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reason-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    opacity: 0.5;
+    min-width: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .reason-text {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: rgba(245,230,192,0.82);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .reason-text strong {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--gold-light);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center;
+    padding: 6rem 1.5rem 8rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .closing-heart {
+    font-size: 2.5rem;
+    animation: heartbeat 1.6s ease infinite;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%       { transform: scale(1.22); }
+    28%       { transform: scale(1); }
+    42%       { transform: scale(1.14); }
+  }
+
+  .closing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .closing p {
+    font-size: 1.12rem;
+    font-weight: 300;
+    color: rgba(245,230,192,0.65);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  .closing-name {
+    display: inline-block;
+    margin-top: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--gold-light);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    padding-bottom: 0.4rem;
+  }
+
+  /* ── PHOTO STRIP ── */
+  .photo-frame {
+    width: 220px;
+    height: 280px;
+    margin: 0 auto 3rem;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.3);
+    box-shadow: 0 0 60px rgba(201,168,76,0.12), 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: sepia(0.15) brightness(0.95);
+  }
+  /* Placeholder shown when no photo */
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,168,76,0.06);
+    color: rgba(201,168,76,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+    line-height: 2;
+  }
+
+  /* ── GOLD LINES ACROSS PAGE ── */
+  .gold-rule {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+    margin: 0;
+    border: none;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+
+  <!-- Gold dust particles -->
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow">One beautiful year &nbsp;·&nbsp; Happy Birthday</p>
+    <h1>
+      She is
+      <em>everything.</em>
+    </h1>
+    <p class="hero-sub">For the girl who turned phone calls into home.</p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Read on</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<hr class="gold-rule">
+
+<!-- YEAR COUNTER -->
+<div class="counter-section">
+  <div class="counter-ring">
+    <div class="counter-ring-inner">
+      <span class="counter-num">1</span>
+      <span class="counter-label">Year</span>
+    </div>
+  </div>
+  <h2 class="reveal">A whole year of you.</h2>
+  <p class="reveal">Three hundred and sixty-five days of laughter, long calls,<br>and everything in between.</p>
+</div>
+
+<hr class="gold-rule">
+
+<!-- HER PHOTO + LETTER -->
+<section class="reveal">
+  <span class="section-tag">A letter from the heart</span>
+
+  <!-- Photo frame — replace her-photo.jpg with the actual file -->
+  <div class="photo-frame">
+    <!-- If you place her photo in the same folder, swap the src below -->
+    <!-- <img src="IMG-20250703-WA0018.jpg" alt="Her"> -->
+    <div class="photo-placeholder">
+      Place her<br>photo here<br>✦
+    </div>
+  </div>
+
+  <div class="letter">
+    <p>
+      There are people you meet and people you <em>find</em> — and from the very first time we talked, I knew you were the kind of rare that doesn't happen twice. We've never been in the same room, yet somehow you feel like the most present person in my life.
+    </p>
+    <p>
+      Every long call that stretched past midnight, every time I thought "okay, just five more minutes" — that was you making the world smaller and warmer. You have this way of listening that makes me feel heard in places I didn't even know I needed.
+    </p>
+    <p>
+      You're funny without trying. You're thoughtful without effort. And the fact that you're all the way in Kabarak and still the first person I want to tell things to — that means something. That means everything.
+    </p>
+    <p>
+      Happy birthday, and happy anniversary — one year of proving that distance is just a detail when the connection is real.
+    </p>
+    <div class="letter-sign">With all of it, always — Moses 🖤</div>
+  </div>
+</section>
+
+<hr class="gold-rule">
+
+<!-- REASONS -->
+<section class="reasons-section">
+  <h2 class="reveal">Why you matter to me.</h2>
+
+  <div class="reason-item">
+    <span class="reason-num">01</span>
+    <p class="reason-text">Because I can talk to you for <strong>over an hour</strong> and still have things left to say — and that has never happened with anyone else before.</p>
+  </div>
+
+  <div class="reason-item">
+    <span class="reason-num">02</span>
+    <p class="reason-text">Because you make being <strong>far away</strong> feel like a minor inconvenience, not a barrier. You show up fully even through a screen.</p>
+  </div>
+
+  <div class="reason-item">
+    <span class="reason-num">03</span>
+    <p class="reason-text">Because you listen the way people don't — <strong>without rushing</strong> to respond, without making it about you. You just understand.</p>
+  </div>
+
+  <div class="reason-item">
+    <span class="reason-num">04</span>
+    <p class="reason-text">Because a whole year went by and instead of fading like most things do, <strong>you got better.</strong> More you. More real.</p>
+  </div>
+
+  <div class="reason-item">
+    <span class="reason-num">05</span>
+    <p class="reason-text">Because on the days I didn't say much, you still <strong>showed up</strong> — and that kind of quiet loyalty is worth more than I know how to say.</p>
+  </div>
+
+  <div class="reason-item">
+    <span class="reason-num">06</span>
+    <p class="reason-text">Because being with you — even just in voice, even through a phone — <strong>feels like the most natural thing</strong> I've ever done.</p>
+  </div>
+</section>
+
+<hr class="gold-rule">
+
+<!-- CLOSING -->
+<div class="closing">
+  <span class="closing-heart">🤍</span>
+  <h2 class="reveal">Here's to year two.</h2>
+  <p class="reveal">
+    May this birthday feel as special as you make every ordinary day feel.<br><br>
+    The distance is temporary. What we have is not.
+  </p>
+  <div class="reveal">
+    <span class="closing-name">Happy Birthday, beautiful.</span>
+  </div>
+</div>
+
+<script>
+  // Gold dust particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${40 + Math.random()*50}%;
+      --dur:${4 + Math.random()*6}s;
+      --delay:${Math.random()*6}s;
+      --tx:${(Math.random()-0.5)*60}px;
+    `;
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // stagger reason items
+        if (e.target.classList.contains('reason-item')) {
+          const items = document.querySelectorAll('.reason-item');
+          items.forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 120);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .reason-item').forEach(el => observer.observe(el));
+</script>
+</body>
+  </html>
