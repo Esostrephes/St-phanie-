@@ -501,7 +501,7 @@
   <!-- Photo frame — replace her-photo.jpg with the actual file -->
   <div class="photo-frame">
     <!-- If you place her photo in the same folder, swap the src below -->
-    <!-- <img src="her-photo.jpg" alt="Her"> -->
+    <!-- <img src="IMG-20250703-WA0018.jpg" alt="Her"> -->
     <div class="photo-placeholder">
       Place her<br>photo here<br>✦
     </div>
